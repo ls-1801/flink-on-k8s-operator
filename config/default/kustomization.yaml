@@ -27,7 +27,6 @@ namePrefix: flink-operator-
 #  someName: someValue
 
 bases:
-  - ../crd
   - ../rbac
   - ../manager
   # [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix including the one in
@@ -90,5 +89,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
   - name: controller
-    newName: gcr.io/spotify/flink-operator
+    newName: gcr.io/spark-on-kubernetes-316714/flink-operator
     newTag: latest
