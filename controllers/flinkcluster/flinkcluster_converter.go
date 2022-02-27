@@ -456,6 +456,7 @@ func newTaskManagerPodSpec(mainContainer *corev1.Container, flinkCluster *v1beta
 		Containers:                    []corev1.Container{*mainContainer},
 		Volumes:                       taskManagerSpec.Volumes,
 		NodeSelector:                  taskManagerSpec.NodeSelector,
+		Affinity:                      taskManagerSpec.Affinity,
 		Tolerations:                   taskManagerSpec.Tolerations,
 		ImagePullSecrets:              imageSpec.PullSecrets,
 		SecurityContext:               taskManagerSpec.SecurityContext,

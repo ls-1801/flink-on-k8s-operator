@@ -18,6 +18,8 @@ metadata:
   name: flinkjobcluster-sample
 spec:
   flinkVersion: "1.14"
+  batchScheduler:
+    name: "external"
   image:
     name: flink:1.14.2
   jobManager:
@@ -28,7 +30,7 @@ spec:
         memory: "2048Mi"
         cpu: "500m"
   taskManager:
-    replicas: 2
+    replicas: 1
     resources:
       limits:
         memory: "2048Mi"
@@ -36,7 +38,8 @@ spec:
   job:
     jarFile: ./examples/streaming/WordCount.jar
     className: org.apache.flink.streaming.examples.wordcount.WordCount
-    args: ["--input", "./README.txt"]
+    args: [ "--input", "./README.txt" ]
     parallelism: 2
+    restartPolicy: Never
   flinkProperties:
     taskmanager.numberOfTaskSlots: "1"

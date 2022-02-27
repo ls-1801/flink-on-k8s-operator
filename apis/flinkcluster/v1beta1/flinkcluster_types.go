@@ -339,6 +339,10 @@ type TaskManagerSpec struct {
 	// [More info](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/)
 	NodeSelector map[string]string `json:"nodeSelector,omitempty"`
 
+	// _(Optional)_ Node affinity that can influence scheduling
+	// [More info](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/)
+	Affinity *corev1.Affinity `json:"affinity,omitempty"`
+
 	// _(Optional)_ Defines the node affinity of the pod
 	// [More info](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
 	Tolerations []corev1.Toleration `json:"tolerations,omitempty"`
