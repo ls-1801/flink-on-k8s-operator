@@ -68,7 +68,7 @@ spec:
         - --zap-devel=false
         command:
         - /flink-operator
-        image: {{ .Values.operatorImage.name }}
+        image: gcr.io/spark-on-kubernetes-316714/{{ .Values.operatorImage.name }}
         ports:
         - containerPort: 9443
           name: webhook-server
