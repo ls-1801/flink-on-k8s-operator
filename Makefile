@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 VERSION ?= latest
 # Image URL to use all building/pushing image targets
-IMG ?= ghcr.io/spotify/flink-operator:$(VERSION)
+IMG ?= gcr.io/spark-on-kubernetes-316714/flink-operator:$(VERSION)
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:maxDescLen=0,trivialVersions=true,preserveUnknownFields=false,generateEmbeddedObjectMeta=true"
 # The Kubernetes namespace in which the operator will be deployed.
@@ -35,7 +35,7 @@ manifests: controller-gen ## Generate WebhookConfiguration, ClusterRole and Cust
 	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./apis/.../v1beta1/..." output:crd:artifacts:config=config/crd/bases
 	# remove status field as they interfer with ArgoCD and Google config-sync
 	# https://github.com/kubernetes-sigs/controller-tools/issues/456
-	yq -i e 'del(.status)' config/crd/bases/flinkoperator.k8s.io_flinkclusters.yaml
+	# yq -i e 'del(.status)' config/crd/bases/flinkoperator.k8s.io_flinkclusters.yaml
 
 generate: controller-gen ## Generate code containing DeepCopy, DeepCopyInto, and DeepCopyObject method implementations.
 	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./apis/.../v1beta1/..."

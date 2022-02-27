@@ -15,6 +15,7 @@ package batchscheduler
 
 import (
 	"fmt"
+	"github.com/spotify/flink-on-k8s-operator/controllers/flinkcluster/batchscheduler/external"
 	"sync"
 
 	"k8s.io/klog"
@@ -36,6 +37,13 @@ func init() {
 		return
 	}
 	schedulerPlugins[scheduler.Name()] = scheduler
+
+	externalScheduler, err := external.New()
+	if err != nil {
+		klog.Errorf("Failed initializing external batch scheduler: %v", err)
+		return
+	}
+	schedulerPlugins[externalScheduler.Name()] = externalScheduler
 }
 
 // GetScheduler gets the real batch scheduler.
