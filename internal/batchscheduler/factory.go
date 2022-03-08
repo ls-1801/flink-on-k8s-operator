@@ -15,7 +15,7 @@ package batchscheduler
 
 import (
 	"fmt"
-	"github.com/spotify/flink-on-k8s-operator/controllers/flinkcluster/batchscheduler/external"
+	"github.com/spotify/flink-on-k8s-operator/internal/batchscheduler/external"
 	"sync"
 
 	"k8s.io/klog"
