@@ -1,0 +1,52 @@
+# K8s namespace where Flink operator to be deployed
+flinkOperatorNamespace:
+  name: "default"
+
+# Watch custom resources in the namespace, ignore other namespaces. If empty, all namespaces will be watched.
+watchNamespace:
+
+# The number of replicas of the operator Deployment
+replicas: 1
+
+serviceAccount:
+  flinkoperator:
+    # -- Create a service account for the operator
+    create: true
+    # -- Optional name for the operator service account
+    name: ""
+    # -- Optional annotations for the operator service account
+    annotations: {}
+
+# Create RBAC resources if true
+rbac:
+  create: true
+
+# The defination of the operator image
+operatorImage:
+  name: flink-operator:latest
+  pullPolicy: always
+
+# Defines security context for operator container
+securityContext:
+  {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# Defines the operator's resources
+resources:
+  requests:
+    cpu: 100m
+    memory: 100Mi
+  limits:
+    cpu: 100m
+    memory: 200Mi
+
+# Annotations to be added to pods
+podAnnotations: {}
+
+nodeSelector: {}
+tolerations: {}
